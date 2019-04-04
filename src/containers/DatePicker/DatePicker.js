@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 
-//import CalendarCreator from '../../helpers/calendar';
 import './DatePicker.css';
 
 class DatePicker extends Component {
     state = {
-        monthData: [],
+        pickedDate: null,
         calendarOpen: false
     };
+
+    componentDidMount() {
+        const currentDate = new Date();
+
+        const currentMonth = currentDate.toLocaleString('en', {month: 'long'});
+        const currentDay = currentDate.getDate();
+        const currentYear = currentDate.getFullYear();
+
+        const dateInCaption = `${currentMonth} ${currentDay}, ${currentYear}`;
+
+        this.setState({
+            pickedDate: dateInCaption
+        });
+    }
 
     openCalendarHandler = () => {
         this.setState({ calendarOpen: true });
@@ -15,9 +28,9 @@ class DatePicker extends Component {
 
     render() {
         return (
-            <div className="DatePicker">
-                <div className="DatePicker__CurrentDate">April 4, 2019</div>
-                <div>Calendar</div>
+            <div className="DatePicker" onClick={this.openCalendarHandler}>
+                <div className="DatePicker__CurrentDate">{this.state.pickedDate}</div>
+                {this.state.calendarOpen ? <div>Calendar</div> : null}
             </div>
         );
     }

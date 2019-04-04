@@ -1,8 +1,13 @@
 .DatePicker {
     width: 400px;
-    border: 1px solid black;
+    margin: 0 auto;
+    border: 2px solid #0575e6;
     border-radius: 5px;
     padding: 10px;
-    background-color: antiquewhite;
+    background-color: #f0f0f0;
     cursor: pointer;
+}
+
+.DatePicker__CurrentDate {
+    font-weight: bold;
 }
