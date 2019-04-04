@@ -39,12 +39,12 @@ class Calendar {
     getArrayWithNewMonth() {
         const monthData = new Array(42);
         const firstWeekdayOfMonth = this._getFirstWeekdayOfMonth(this._year, this._month);
-        console.log(firstWeekdayOfMonth);
         const numberOfDaysInMonth = this._getNumberOfDaysInMonth(this._year, this._month);
-        console.log(numberOfDaysInMonth);
+
         let currentDate = 0;
         let currentMonth = this._month;
         let currentYear = this._year;
+        let monthClass = 'current-month';
 
         for (let i = firstWeekdayOfMonth; i < 42; i++) {
 
@@ -52,6 +52,7 @@ class Calendar {
                 currentDate = 0;
                 currentMonth = this._moveToNextMonth().month;
                 currentYear = this._moveToNextMonth().year;
+                monthClass = 'next-month';
             }
 
             currentDate = currentDate + 1;
@@ -59,7 +60,8 @@ class Calendar {
             const date = {
                 day: currentDate,
                 month: MONTHS[currentMonth],
-                year: currentYear
+                year: currentYear,
+                monthClass: monthClass
             };
 
             monthData[i] = date;
@@ -69,12 +71,14 @@ class Calendar {
             const month = this._moveToPreviousMonth().month;
             const year = this._moveToPreviousMonth().year;
             let lastDayOfMonth = this._getNumberOfDaysInMonth(year, month);
+            monthClass = 'previous-month'
 
             for (let i = firstWeekdayOfMonth - 1; i >=0; i--) {
                 monthData[i] = {
                     day: lastDayOfMonth,
                     month: MONTHS[month],
-                    year: year
+                    year: year,
+                    monthClass: monthClass
                 }
 
                 lastDayOfMonth = lastDayOfMonth - 1;
@@ -126,7 +130,7 @@ class Calendar {
     }
   
     getCurrentMonth() {
-      return this._month
+      return MONTHS[this._month];
     }
 }
 

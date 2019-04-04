@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import calendarCreator from '../../helpers/calendar';
 
 import Calendar from '../Calendar/Calendar';
 import './DatePicker.css';
@@ -10,11 +11,9 @@ class DatePicker extends Component {
     };
 
     componentDidMount() {
-        const currentDate = new Date();
-
-        const currentMonth = currentDate.toLocaleString('en', {month: 'long'});
-        const currentDay = currentDate.getDate();
-        const currentYear = currentDate.getFullYear();
+        const currentMonth = calendarCreator.getCurrentMonth();
+        const currentDay = new Date().getDate();
+        const currentYear = calendarCreator.getCurrentYear();
 
         const dateInCaption = `${currentMonth} ${currentDay}, ${currentYear}`;
 

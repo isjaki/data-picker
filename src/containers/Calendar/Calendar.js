@@ -1,46 +1,68 @@
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
 import calendarCreator from '../../helpers/calendar';
-import './Calendar.css';
 
+import CalendarTable from '../../components/CalendarTable/CalendarTable';
+import './Calendar.css';
 
 class Calendar extends Component {
     state = {
-        monthData: []
+        monthData: null,
+        calendarCaption: null
     }
 
     componentDidMount() {
         this.setState({
-            monthData: calendarCreator.getArrayWithNewMonth()
+            monthData: calendarCreator.getArrayWithNewMonth(),
+            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
         });
     }
 
     switchToNextMonth = () => {
-
+        this.setState({
+            monthData: calendarCreator.getDataForNextMonth(),
+            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
+        });
     }
 
     switchToPrevMonth = () => {
-        
+        this.setState({
+            monthData: calendarCreator.getDataForPreviousMonth(),
+            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
+        });
     }
 
     render() {
+        let calendarTable = null;
+
+        if (this.state.monthData) {
+            calendarTable = <CalendarTable 
+                monthData={this.state.monthData} />
+        }
+
         return (
-            <table className="Calendar">
-                <caption>
-                    <button onClick={this.switchToPrevMonth}>Prev</button>
-                    <span>April, 2019</span>
-                    <button onClick={this.switchToNextMonth}>Next</button>
-                </caption>
-                <tr>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    <th>Sun</th>
-                </tr>
-            </table>
+            <Fragment>
+                <div className="Calendar__caption">
+                    <button 
+                        onClick={this.switchToPrevMonth}
+                        className="Calendar__prev-button"
+                    >Prev</button>
+                    <span>{this.state.calendarCaption}</span>
+                    <button 
+                        onClick={this.switchToNextMonth}
+                        className="Calendar__next-button"
+                    >Next</button>
+                </div>
+                <div className="Calendar">
+                    <div className="Calendar__header">Mon</div>
+                    <div className="Calendar__header">Tue</div>
+                    <div className="Calendar__header">Wed</div>
+                    <div className="Calendar__header">Thu</div>
+                    <div className="Calendar__header">Fri</div>
+                    <div className="Calendar__header">Sat</div>
+                    <div className="Calendar__header">Sun</div>
+                    {calendarTable}
+                </div>
+            </Fragment>
         )
     }
 }
