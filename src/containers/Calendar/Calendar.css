@@ -1,0 +1,35 @@
+.Calendar {
+    border-collapse: collapse;
+    border-bottom: 2px solid #3f58fc;
+    margin: 5px 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.Calendar tr:nth-child(2n + 1) {
+    background-color: #dee2e8;
+}
+  
+.Calendar td, th {
+    padding: 5px 9px;
+    text-align: center;
+}
+  
+.Calendar th {
+    font-weight: bold;
+    background-color: #3f58fc;
+    color: #fff;
+}
+
+.Calendar td {
+  cursor: pointer;
+}
+
+.Calendar td:hover {
+  background-color: #3f58fc;
+  color: #fff;
+}
+
+.Calendar caption {
+    font-weight: bold;
+}

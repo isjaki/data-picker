@@ -137,7 +137,4 @@ const options = {
 
 const calendar = new Calendar(options);
 
-console.log(calendar.getArrayWithNewMonth());
-console.log(calendar.getDataForPreviousMonth());
-
-export default Calendar;
+export default calendar;

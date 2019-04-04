@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Calendar from '../Calendar/Calendar';
 import './DatePicker.css';
 
 class DatePicker extends Component {
@@ -29,8 +30,11 @@ class DatePicker extends Component {
     render() {
         return (
             <div className="DatePicker" onClick={this.openCalendarHandler}>
-                <div className="DatePicker__CurrentDate">{this.state.pickedDate}</div>
-                {this.state.calendarOpen ? <div>Calendar</div> : null}
+                {
+                    this.state.calendarOpen ? 
+                    <Calendar /> : 
+                    <div className="DatePicker__CurrentDate">{this.state.pickedDate}</div>
+                }
             </div>
         );
     }
