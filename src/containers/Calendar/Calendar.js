@@ -12,10 +12,13 @@ class Calendar extends Component {
     }
 
     componentDidMount() {
+        const isPrevButtonDisabled = calendarCreator.getCurrentMonthDigit() === new Date().getMonth() &&
+            calendarCreator.getCurrentYear() === new Date().getFullYear();
+
         this.setState({
             monthData: calendarCreator.getArrayWithNewMonth(),
             calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`,
-            prevButtonDisabled: true
+            prevButtonDisabled: isPrevButtonDisabled
         });
     }
 

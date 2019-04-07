@@ -25,6 +25,12 @@
     cursor: not-allowed;
 }
 
+.Calendar div.current-month:not(.date-disable):hover,
+.Calendar div.next-month:hover,
+.Calendar div.previous-month:hover {
+    background-color: #ebebeb;
+}
+
 .Calendar__caption {
     font-weight: bold;
     margin-bottom: 7px;
