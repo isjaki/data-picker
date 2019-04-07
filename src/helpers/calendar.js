@@ -60,6 +60,7 @@ class Calendar {
             const date = {
                 day: currentDate,
                 month: MONTHS[currentMonth],
+                monthDigit: currentMonth,
                 year: currentYear,
                 monthClass: monthClass
             };
@@ -77,6 +78,7 @@ class Calendar {
                 monthData[i] = {
                     day: lastDayOfMonth,
                     month: MONTHS[month],
+                    monthDigit: month,
                     year: year,
                     monthClass: monthClass
                 }

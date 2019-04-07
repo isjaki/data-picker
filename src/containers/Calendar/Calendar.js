@@ -7,27 +7,34 @@ import './Calendar.css';
 class Calendar extends Component {
     state = {
         monthData: null,
-        calendarCaption: null
+        calendarCaption: null,
+        prevButtonDisabled: false
     }
 
     componentDidMount() {
         this.setState({
             monthData: calendarCreator.getArrayWithNewMonth(),
-            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
+            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`,
         });
     }
 
     switchToNextMonth = () => {
+        const updatedMonthData = calendarCreator.getDataForNextMonth();
+        const updatedCalendarCaption = `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`;
+
         this.setState({
-            monthData: calendarCreator.getDataForNextMonth(),
-            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
+            monthData: updatedMonthData,
+            calendarCaption: updatedCalendarCaption,
         });
     }
 
     switchToPrevMonth = () => {
+        const updatedMonthData = calendarCreator.getDataForPreviousMonth();
+        const updatedCalendarCaption = `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`;
+
         this.setState({
-            monthData: calendarCreator.getDataForPreviousMonth(),
-            calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`
+            monthData: updatedMonthData,
+            calendarCaption: updatedCalendarCaption,
         });
     }
 
@@ -36,7 +43,8 @@ class Calendar extends Component {
 
         if (this.state.monthData) {
             calendarTable = <CalendarTable 
-                monthData={this.state.monthData} />
+                monthData={this.state.monthData}
+                clicked={this.props.dateClicked} />
         }
 
         return (
@@ -45,12 +53,13 @@ class Calendar extends Component {
                     <button 
                         onClick={this.switchToPrevMonth}
                         className="Calendar__prev-button"
-                    >Prev</button>
+                        disabled={this.state.prevButtonDisabled}
+                    ><i class="fas fa-chevron-left"></i></button>
                     <span>{this.state.calendarCaption}</span>
                     <button 
                         onClick={this.switchToNextMonth}
                         className="Calendar__next-button"
-                    >Next</button>
+                    ><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div className="Calendar">
                     <div className="Calendar__header">Mon</div>

@@ -26,12 +26,23 @@ class DatePicker extends Component {
         this.setState({ calendarOpen: true });
     }
 
+    pickDateHandler = (event) => {
+        event.stopPropagation();
+
+        const pickedDate = event.target.className.split(' ')[0].replace(/-/g, ' ');
+
+        this.setState({
+            pickedDate: pickedDate,
+            calendarOpen: false
+        });
+    }
+
     render() {
         return (
             <div className="DatePicker" onClick={this.openCalendarHandler}>
                 {
                     this.state.calendarOpen ? 
-                    <Calendar /> : 
+                    <Calendar dateClicked={this.pickDateHandler} /> : 
                     <div className="DatePicker__CurrentDate">{this.state.pickedDate}</div>
                 }
             </div>
