@@ -54,12 +54,12 @@ class Calendar extends Component {
                         onClick={this.switchToPrevMonth}
                         className="Calendar__prev-button"
                         disabled={this.state.prevButtonDisabled}
-                    ><i class="fas fa-chevron-left"></i></button>
+                    ><i className="fas fa-chevron-left"></i></button>
                     <span>{this.state.calendarCaption}</span>
                     <button 
                         onClick={this.switchToNextMonth}
                         className="Calendar__next-button"
-                    ><i class="fas fa-chevron-right"></i></button>
+                    ><i className="fas fa-chevron-right"></i></button>
                 </div>
                 <div className="Calendar">
                     <div className="Calendar__header">Mon</div>
