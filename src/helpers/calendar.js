@@ -128,11 +128,15 @@ class Calendar {
     }
     
     getCurrentYear() {
-      return this._year;
+        return this._year;
     }
   
     getCurrentMonth() {
-      return MONTHS[this._month];
+        return MONTHS[this._month];
+    }
+
+    getCurrentMonthDigit() {
+        return this._month;
     }
 }
 

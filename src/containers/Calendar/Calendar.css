@@ -41,6 +41,14 @@
     cursor: pointer;
 }
 
+.Calendar__caption button[disabled] {
+    cursor: not-allowed;
+}
+
+.Calendar__caption button[disabled] .fas {
+    color: #8b8b8b;
+}
+
 .Calendar__caption button .fas {
     font-size: 22px;
 }

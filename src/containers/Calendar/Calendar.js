@@ -15,6 +15,7 @@ class Calendar extends Component {
         this.setState({
             monthData: calendarCreator.getArrayWithNewMonth(),
             calendarCaption: `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`,
+            prevButtonDisabled: true
         });
     }
 
@@ -25,16 +26,20 @@ class Calendar extends Component {
         this.setState({
             monthData: updatedMonthData,
             calendarCaption: updatedCalendarCaption,
+            prevButtonDisabled: false
         });
     }
 
     switchToPrevMonth = () => {
         const updatedMonthData = calendarCreator.getDataForPreviousMonth();
         const updatedCalendarCaption = `${calendarCreator.getCurrentMonth()}, ${calendarCreator.getCurrentYear()}`;
+        const isPrevButtonDisabled = calendarCreator.getCurrentMonthDigit() === new Date().getMonth() &&
+            calendarCreator.getCurrentYear() === new Date().getFullYear();
 
         this.setState({
             monthData: updatedMonthData,
             calendarCaption: updatedCalendarCaption,
+            prevButtonDisabled: isPrevButtonDisabled
         });
     }
 
